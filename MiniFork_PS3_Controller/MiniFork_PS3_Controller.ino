@@ -167,7 +167,8 @@ void notify() {
 }
 void processThrottle(int throttleValue) {
   adjustedThrottleValue = throttleValue;
-  if (adjustedThrottleValue > 15 || adjustedThrottleValue < -15) {
+  int deadZoneValue = 60;
+  if (adjustedThrottleValue > deadZoneValue || adjustedThrottleValue < -deadZoneValue) {
     if (hardRight) {
       moveMotor(rightMotor0, rightMotor1, -1 * (adjustedThrottleValue * steeringAdjustment));
     } else if (hardLeft) {

@@ -106,7 +106,8 @@ void processGamepad(ControllerPtr ctl) {
 
 void processThrottle(int axisYValue) {
   float adjustedThrottleValue = axisYValue / 2;
-  if (adjustedThrottleValue > 15 || adjustedThrottleValue < -15) {
+  int deadZoneValue = 60;
+  if (adjustedThrottleValue > deadZoneValue || adjustedThrottleValue < -deadZoneValue) {
     if (hardRight) {
       moveMotor(rightMotor0, rightMotor1, -1 * (adjustedThrottleValue * steeringAdjustment));
     } else if (hardLeft) {
